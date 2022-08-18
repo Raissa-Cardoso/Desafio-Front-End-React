@@ -1,0 +1,46 @@
+*{
+    margin: 0;
+    padding: 0;    
+}
+.cabecalho{        
+    color: rgb(0,121,141);    
+}
+.info{     
+    height: 50px;  
+    width: 50px;
+    position: absolute;
+    border: solid 1px black;
+}
+.menu{    
+    background-color: blue;
+}
+.main{    
+    background-color: pink;
+}
+.rodape{
+    background-color: purple;
+}
+main{
+    grid-area: conteudo;
+}
+nav{
+    grid-area: navegacao;
+}
+header{
+    grid-area: cabecalho;
+}
+footer{
+    grid-area: rodape;
+}
+body{   
+    display: grid; 
+    min-height: 100vh;    
+    grid-template-columns: 1fr;
+    grid-template-rows: 60px 30px 1fr 130px;
+    grid-template-areas: 
+        'cabecalho'
+        'navegacao'
+        'conteudo'
+        'rodape'
+    ;
+}
