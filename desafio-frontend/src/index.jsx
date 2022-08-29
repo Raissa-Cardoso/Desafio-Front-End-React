@@ -3,41 +3,41 @@ import ReactDOM from 'react-dom'
 import React from 'react'
 
 ReactDOM.render(
-    <div>
-        <main class="main">
-            <div class="historico">
+    <>
+        <main className="main">
+            <div className="historico">
                 <p>Home / Minha conta / </p>
                 <p>Bolsas favoritas</p>
             </div>        
         </main>
-        <header class="cabecalho">        
-            <div class="info">
+        <header className="cabecalho">        
+            <div className="info">
                 <img src="./assets/info.jpg" alt="Logo de informações" height="20px" width="20px"/>
                 <p>Como Funciona</p>
             </div>
-            <div class="contato">
+            <div className="contato">
                 <img src="./assets/whatsapp.jpg" alt="Logo do whatsapp"/>
-                <div class="telefone">
+                <div className="telefone">
                     <p>0800 123 2222</p>
                     <p>Envie mensagem ou ligue</p>
                 </div>            
             </div>
-            <div class="quero-logo">
+            <div className="quero-logo">
                 <img src="./assets/quero-Logo.jpg" alt="Logo da Quero"/>
             </div>
-            <div class="login">
+            <div className="login">
                 <p>Nome Sobrenome</p>
                 <img src="./assets/login.jpg" alt="Icone de Login"/>
             </div>       
         </header>
-        <nav class="menu">
+        <nav className="menu">
             <ul>
                 <li>Minha conta</li>
                 <li>Pré-matrículas</li>
                 <li>Bolsas favoritas</li>
             </ul>
         </nav>
-        <footer class="rodape">RODAPÉ</footer>
-    </div>,
+        <footer className="rodape">RODAPÉ</footer>
+    </>,
     document.getElementById('root')
 )

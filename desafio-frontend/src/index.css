@@ -89,7 +89,7 @@ header{
 footer{
     grid-area: rodape;
 }
-body{   
+#root{
     display: grid; 
     min-height: 100vh;        
     grid-template-columns: 1fr;
