@@ -41,13 +41,13 @@
     width: 25px;    
     font-size: 27px;               
 }
-.fa-info-circle{
+.info i{
     color: white;
     background-color: rgb(24,172,196);    
     border-radius: 100%;
     text-align: center;
 }
-.fa-whatsapp{
+.contato i{
     color:rgb(35, 211, 102);
     align-self: center;
 }
@@ -66,9 +66,6 @@
 }
 .login p{    
     align-self: center;
-}
-.rodape{
-    background-color: purple;
 }
 main{
     grid-area: conteudo;
@@ -144,12 +141,12 @@ main{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    box-shadow: 1px 2px 2px 1px rgba(0, 0, 0, 0.2);
-    
+    box-shadow: 1px 2px 2px 1px rgba(0, 0, 0, 0.2);    
 }
 .adicionarBolsa i{
    font-size: 50px;
    padding: 0 0 5px 0;
+   cursor: pointer;
 }
 .adicionarBolsa p{
     color: black;
@@ -192,6 +189,7 @@ header{
 }
 footer{
     grid-area: rodape;
+    color: #fff;
 }
 #root{
     display: grid; 
@@ -204,4 +202,34 @@ footer{
         'conteudo'
         'rodape'
     ;
+}
+.rodape_contatos{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(0,122,141);
+    height: 50%;
+    padding: 0 5% 0 5%;    
+}
+.rodape_icone_telefone, .rodape_icone_chat, .rodape_icone_email, .rodape_icone_ajuda{
+    display: flex;
+    flex-direction: row;
+}
+.rodape_icone_telefone i, .rodape_icone_chat i, .rodape_icone_email i, .rodape_icone_ajuda i{
+    align-self: center;    
+    width: 25px;    
+    font-size: 27px; 
+    margin-right: 10px;
+}
+.rodape_icone_telefone p:nth-child(2), .rodape_icone_chat p:nth-child(2), .rodape_icone_email p:nth-child(2), .rodape_icone_ajuda p:nth-child(2){
+    font-size: 12px;    
+}
+.rodape_assinatura{
+    display: flex;    
+    background-color: rgb(24,172,196);
+    height: 50%;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;    
 }

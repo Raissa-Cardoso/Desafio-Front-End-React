@@ -4,8 +4,12 @@ import React from 'react'
 
 const logo=require("./assets/quero-Logo.jpg")
 
-ReactDOM.render(
-    <>
+export default function App() {
+    function adicionar(){
+        console.log("olá")
+    }
+    return (
+        <>
         <main className="main">
             <div className="historico">
                 <p>Home / Minha conta / </p>
@@ -23,7 +27,7 @@ ReactDOM.render(
                 </ul>
             </div>  
             <div className='adicionarBolsa'>
-                <i className="fa fa-plus-circle" aria-hidden="true"></i>
+                <i className="fa fa-plus-circle" aria-hidden="true" onClick={adicionar}></i>
                 <p>Adicionar bolsa</p>
                 <p>Clique para adicionar bolsas de cursos do seu interesse</p>
             </div>  
@@ -57,7 +61,41 @@ ReactDOM.render(
                 <li>Bolsas favoritas</li>
             </ul>
         </nav>
-        <footer className="rodape">RODAPÉ</footer>
-    </>,
-    document.getElementById('root')
-)
+        <footer className="rodape">
+            <div className='rodape_contatos'>
+                <div className="rodape_icone_telefone">
+                    <i className="fa fa-whatsapp" aria-hidden="true"></i>
+                    <div className='rodape_telefone'>
+                        <p>0800 123 2222</p>
+                        <p>Seg - Sex 8h-22h</p>
+                    </div>                    
+                </div>
+                <div className="rodape_icone_chat">
+                    <i className="fa fa-comments" aria-hidden="true"></i>
+                    <div className='rodape_chat'>
+                        <p>Chat ao vivo</p>
+                        <p>Seg - Sex 8h-22h</p>
+                    </div>                    
+                </div>
+                <div className="rodape_icone_email">
+                    <i className="fa fa-envelope-o" aria-hidden="true"></i>
+                    <div className="rodape_email">
+                        <p>Mande um e-mail</p>
+                        <p>Respondemos rapidinho</p>
+                    </div>                    
+                </div>
+                <div className="rodape_icone_ajuda">
+                    <i className="fa fa-info-circle" aria-hidden="true"></i>
+                    <div className="rodape_ajuda">
+                        <p>Central de ajuda</p>
+                        <p>Encontre todas as respostas</p>
+                    </div>                    
+                </div>              
+            </div>
+            <div className="rodape_assinatura">
+                <p>Feito com <i className="fa fa-heart-o" aria-hidden="true"></i> pela Quero Educação</p>
+            </div>
+        </footer>
+    </>
+    )
+}
