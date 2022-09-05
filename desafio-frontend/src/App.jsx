@@ -1,16 +1,21 @@
 import './index.css'
-import ReactDOM from 'react-dom'
 import React from 'react'
+
+import Modal from "./Modal/Modal"
 
 const logo=require("./assets/quero-Logo.jpg")
 
 export default function App() {
-    function adicionar(){
-        console.log("olá")
-    }
+    const modal=document.querySelector('#modal')
+    let fundo=document.querySelector('.fundo')       
+    
+    function abrirModal(){  
+        modal.classList.add('Visivel') 
+        fundo.classList.add("Opacidade")                                        
+    }    
     return (
         <>
-        <main className="main">
+        <main className="main fundo">
             <div className="historico">
                 <p>Home / Minha conta / </p>
                 <p>Bolsas favoritas</p>
@@ -26,13 +31,13 @@ export default function App() {
                     <li>1º semestre de 2020</li>
                 </ul>
             </div>  
-            <div className='adicionarBolsa'>
-                <i className="fa fa-plus-circle" aria-hidden="true" onClick={adicionar}></i>
+            <div className='adicionarBolsa'>                
+                <i className="fa fa-plus-circle" aria-hidden="true" onClick={abrirModal}></i>                               
                 <p>Adicionar bolsa</p>
                 <p>Clique para adicionar bolsas de cursos do seu interesse</p>
             </div>  
         </main>
-        <header className="cabecalho"> 
+        <header className="cabecalho fundo"> 
             <div className='info-contato'>
             <div className="info">
                 <i className="fa fa-info-circle" aria-hidden="true"></i>
@@ -54,14 +59,14 @@ export default function App() {
                 <i className="fa fa-user-circle-o" aria-hidden="true"></i>
             </div>       
         </header>
-        <nav className="menu">
+        <nav className="menu fundo">
             <ul>
                 <li>Minha conta</li>
                 <li>Pré-matrículas</li>
                 <li>Bolsas favoritas</li>
             </ul>
         </nav>
-        <footer className="rodape">
+        <footer className="rodape fundo">
             <div className='rodape_contatos'>
                 <div className="rodape_icone_telefone">
                     <i className="fa fa-whatsapp" aria-hidden="true"></i>
@@ -96,6 +101,9 @@ export default function App() {
                 <p>Feito com <i className="fa fa-heart-o" aria-hidden="true"></i> pela Quero Educação</p>
             </div>
         </footer>
+        <div id="modal" class="Modal">
+            <Modal></Modal>
+        </div>
     </>
     )
 }
