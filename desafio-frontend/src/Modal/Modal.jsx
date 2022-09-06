@@ -2,11 +2,11 @@ import './modal.css'
 import React from 'react'
 
 export default function Modal(){
-    const modal=document.querySelector('#modal')
+    const modal=document.querySelector('.modal')
     let fundo=document.querySelector('.fundo')    
     function fecharModal(){
-        modal.classList.remove('Visivel')  
-        fundo.classList.remove("Opacidade")            
+        modal.classList.remove('visivel')  
+        fundo.classList.remove("opacidade")            
     }
     return(
         <>

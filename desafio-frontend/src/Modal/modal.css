@@ -2,16 +2,11 @@ body{
     margin: 0;
     padding: 0;
 }
-#fundo{   
-    margin-top: 0; 
-    width: 100%;
-    height: 100vh;
-}
 h1{
     margin: 0;
     padding: 0;
 }
-.Modal{
+.modal{
     position: fixed;
     height: 90%;
     width: 50%;    
@@ -22,12 +17,12 @@ h1{
     display:none;
     border:solid black 1px;               
 }
-.Visivel{
+.visivel{
     display:flex;
     flex-direction: row;
     justify-content: flex-end;
 }
-.Opacidade{       
+.opacidade{       
     background: rgba(0,0,0,0.8);
 }
 #fecharModal{

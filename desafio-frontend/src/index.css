@@ -78,9 +78,25 @@ main{
         'historico' 'historico'
         'titulo' 'titulo'
         'semestre' 'semestre'
-        'adicionarBolsa' 'adicionarBolsa'
+        'cards' 
     ; 
     background-color: rgb(251,251,251);       
+}
+.cards{
+    grid-area: cards;
+    display: flex;
+    flex-direction: row;        
+    width: 91vw;         
+}
+.adicionar_bolsa{
+    margin-right: 35px;       
+}
+.bolsas_adicionadas{  
+    width: 100%;  
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap; 
+    justify-content: space-around;
 }
 .titulos{
     grid-area: titulo;
@@ -133,30 +149,7 @@ main{
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
 }
-.adicionarBolsa{
-    grid-area: adicionarBolsa;    
-    height: 320px;
-    width: 230px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 1px 2px 2px 1px rgba(0, 0, 0, 0.2);    
-}
-.adicionarBolsa i{
-   font-size: 50px;
-   padding: 0 0 5px 0;
-   cursor: pointer;
-}
-.adicionarBolsa p{
-    color: black;
-    text-align: center;
-}
-.adicionarBolsa p:nth-child(3){
-    font-size: 14px;
-    font-weight: 100;
-    width: 80%;
-}
+
 nav{
     grid-area: navegacao;
     background-color: rgb(24,172,196);
@@ -232,26 +225,4 @@ footer{
     justify-content: center;
     align-items: center;
     font-size: 12px;    
-}
-.Modal{
-    position: fixed;
-    height: 90%;
-    width: 50%;    
-    background-color: #fff;
-    top: 5%;
-    left: 25%;
-    z-index:10; 
-    display:none;
-    border:solid black 1px;               
-}
-.Visivel{
-    display:flex;
-    flex-direction: row;
-    justify-content: flex-end;
-}
-.Opacidade{       
-    background: rgba(0,0,0,0.8);
-}
-#fecharModal{
-   height: 20px;
 }
