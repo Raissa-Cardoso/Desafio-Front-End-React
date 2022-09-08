@@ -1,11 +1,3 @@
-body{
-    margin: 0;
-    padding: 0;
-}
-h1{
-    margin: 0;
-    padding: 0;
-}
 .modal{
     position: fixed;
     height: 90%;
@@ -13,18 +5,95 @@ h1{
     background-color: #fff;
     top: 5%;
     left: 25%;
-    z-index:10; 
-    display:none;
-    border:solid black 1px;               
+    z-index:10;     
+    border:solid 1px rgba(0,0,0,0.8);     
+    flex-direction: column;           
 }
-.visivel{
-    display:flex;
-    flex-direction: row;
-    justify-content: flex-end;
+.modal h1{
+    margin: 20px 0 0 20px;
+    font-size: 16px;   
+}
+.modal h2{
+    font-size: 14px;   
+    margin: 5px 0 0 20px;
+    font-weight: 100;
 }
 .opacidade{       
     background: rgba(0,0,0,0.8);
 }
-#fecharModal{
-   height: 20px;
+.modal .fecharModal{
+    position: absolute;
+    height: 30px;    
+    width: 30px;
+    right:0;
+    font-size: 16px;
+    top: calc(-30px);
+    color: #fff;
+    background-color:rgba(0,0,0,0.8);
+    border: none;
 }
+.modal .cidadeCurso{
+    display: flex;
+    height: 40px;
+    margin: 20px 20px 0 20px;
+}
+.modal .cidadeCurso label,.modalidadePreço p{    
+    font-size: 12px;  
+    margin-bottom: 5px;  
+}
+.modal .cidadeCurso select{    
+    width: 80%;
+    padding: 2px 5px;
+    font-weight: 200;
+}
+.cidadeCurso .cidade, .cidadeCurso .curso{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+.modalidadePreço{
+    height: 40px;
+    margin: 20px 0px 0 20px;
+    display: flex;
+    flex-direction: row; 
+    justify-content: space-between;   
+}
+.modalidadeModal{  
+    display: flex;  
+    flex-direction: column;
+}
+.modalidadeModalOpcoes input{
+    margin: 20px 10px 0 5px;
+    border-radius: 5px;
+}
+.modalidadeModalOpcoes label{
+    font-weight: 200;
+}
+.preçoModal{    
+    width: 51%;    
+}
+.preçoModal p{
+    margin: 0;
+}
+.preçoModal p:nth-child(2){
+    font-weight: 200;
+}
+.linhaProgresso{
+    margin-top: 20px;
+    width: 75%;
+    height: 3px;
+    background-color: black;
+    border-radius: 5px;
+}
+.linhaProgresso .progressoBotao{
+    background-color: red;
+    position: absolute;
+    border-radius: 100%;
+    height: 20px;
+    width: 20px;
+    margin-top:calc(-10px);
+    cursor: pointer;    
+}
+
+
+    

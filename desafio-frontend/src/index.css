@@ -78,7 +78,7 @@ main{
         'historico' 'historico'
         'titulo' 'titulo'
         'semestre' 'semestre'
-        'cards' 
+        'cards' 'cards'
     ; 
     background-color: rgb(251,251,251);       
 }
@@ -89,14 +89,13 @@ main{
     width: 91vw;         
 }
 .adicionar_bolsa{
-    margin-right: 35px;       
+    margin-right: 10px;       
 }
-.bolsas_adicionadas{  
-    width: 100%;  
+.bolsasAdicionadas{      
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap; 
-    justify-content: space-around;
+    flex-wrap: wrap;     
+    width: 100%;          
 }
 .titulos{
     grid-area: titulo;
@@ -225,4 +224,7 @@ footer{
     justify-content: center;
     align-items: center;
     font-size: 12px;    
+}
+.modal{
+    display:none;
 }

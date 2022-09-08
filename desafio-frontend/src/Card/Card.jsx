@@ -11,7 +11,13 @@ export default function Card(props){
     }*/
     return(
         <div className='card'>   
-            <div className='logo_universidade'>
+            {props.children}    
+        </div>  
+    )
+}
+
+/*
+<div className='logo_universidade'>
                 {props.logo}
             </div>             
             <div className='curso'>
@@ -32,7 +38,4 @@ export default function Card(props){
                <button className='botoes_inviseis'>Excluir</button> 
                <button className='botoes_inviseis'>Ver oferta</button>
             </div>                                                      
-           
-    </div>  
-    )
-}
+    */

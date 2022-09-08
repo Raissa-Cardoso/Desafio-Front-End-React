@@ -1,22 +1,33 @@
 import './index.css'
-import React from 'react'
+import React,{useState} from 'react'
 
 import Modal from "./Modal/Modal"
 import Card from './Card/Card'
+import AdicionarCurso from './Adicionar curso/AdicionarCurso'
+import BolsasAdicionadas from './Bolsas adicionadas/BolsasAdicionadas'
 
 const logo=require("./assets/quero-Logo.jpg")
 
-export default function App() {
-    /*const modal=document.querySelector('.modal')
-    //let fundos=document.querySelectorAll('.fundo')       
+export default function App() {    
+    let [modal,setModal]=useState(document.querySelector('.modal'))
+    let [fundos,setFundos]=useState(document.querySelectorAll('.fundo'))
+    function abrirModal(){        
+        setModal(document.querySelector('.modal'))
+        modal.style.display="flex"
+        /*setFundos(document.querySelectorAll('.fundo'))        
+        fundos.forEach(fundo=>{
+            fundo.style.background='rgba(0,0,0,0.8)'
+        })*/               
+    }
+    function fecharModal(){
+        setModal(document.querySelector('.modal'))
+        modal.style.display="none"
+        /*setFundos(document.querySelectorAll('.fundo'))
+        fundos.forEach(fundo=>{
+            fundo.style.backgroundColor='rgba(0,0,0,0)'
+        })*/
+    }
     
-    function abrirModal(){  
-        console.log(modal)
-        modal.classList.add('visivel')
-        /*fundos.forEach(fundo=>{
-            fundo.classList.add("opacidade")  
-        })                                              
-    }    */
     return (
         <>
         <main className="main fundo">
@@ -37,65 +48,24 @@ export default function App() {
             </div>
             <div className='cards'>
                 <div className='adicionar_bolsa'>
-                    <Card 
-                        nome_curso={<i className="fa fa-plus-circle" aria-hidden="true"></i>}
-                        modalidade_titulo='Adicionar bolsa'
-                        modalidade_subtitulo='Clique para adicionar bolsas de cursos do seu interesse'
-                        botoes={false} 
-                    />
+                    <Card>
+                        <AdicionarCurso adicionar={abrirModal}></AdicionarCurso> 
+                    </Card>
                 </div>
-                <div className='bolsas_adicionadas'>
-                    <Card
-                        logo={<img src={logo} alt="DL1000"/>}
-                        nome_universidade='AAAAA'
-                        nome_curso='AAAAAAAAAAAAAAA AAAAAAA AAAA'
-                        nota_curso='3.8'
-                        modalidade_titulo='PRESENCIAL • NOITE'
-                        modalidade_subtitulo='Início das aulas em: 05/07/2019'
-                        preço_titulo='Mensalidade com o Quero Bolsa:'
-                        preço_anterior='R$ 1.487,31'
-                        preço_atual='R$ 453,63 /mês'
-                        botoes={true}                        
-                    />
-                    <Card
-                        logo={<img src={logo} alt="DL1000"/>}
-                        nome_universidade='AAAAA'
-                        nome_curso='AAAAAAAAAAAAAAA AAAAAAA AAAA'
-                        nota_curso='3.8'
-                        modalidade_titulo='PRESENCIAL • NOITE'
-                        modalidade_subtitulo='Início das aulas em: 05/07/2019'
-                        preço_titulo='Mensalidade com o Quero Bolsa:'
-                        preço_anterior='R$ 1.487,31'
-                        preço_atual='R$ 453,63 /mês'
-                        botoes={true}                        
-                    />
-                    <Card
-                        logo={<img src={logo} alt="DL1000"/>}
-                        nome_universidade='AAAAA'
-                        nome_curso='AAAAAAAAAAAAAAA AAAAAAA AAAA'
-                        nota_curso='3.8'
-                        modalidade_titulo='PRESENCIAL • NOITE'
-                        modalidade_subtitulo='Início das aulas em: 05/07/2019'
-                        preço_titulo='Mensalidade com o Quero Bolsa:'
-                        preço_anterior='R$ 1.487,31'
-                        preço_atual='R$ 453,63 /mês'
-                        botoes={true}                        
-                    />
-                    <Card
-                        logo={<img src={logo} alt="DL1000"/>}
-                        nome_universidade='AAAAA'
-                        nome_curso='AAAAAAAAAAAAAAA AAAAAAA AAAA'
-                        nota_curso='3.8'
-                        modalidade_titulo='PRESENCIAL • NOITE'
-                        modalidade_subtitulo='Início das aulas em: 05/07/2019'
-                        preço_titulo='Mensalidade com o Quero Bolsa:'
-                        preço_anterior='R$ 1.487,31'
-                        preço_atual='R$ 453,63 /mês'
-                        botoes={true}                        
-                    />                      
-                
-                </div>                
-
+                <div className='bolsasAdicionadas'>
+                    <Card>
+                        <BolsasAdicionadas></BolsasAdicionadas>
+                    </Card>
+                    <Card>
+                        <BolsasAdicionadas></BolsasAdicionadas>
+                    </Card>
+                    <Card>
+                        <BolsasAdicionadas></BolsasAdicionadas>
+                    </Card>
+                    <Card>
+                        <BolsasAdicionadas></BolsasAdicionadas>
+                    </Card>                    
+                </div>
             </div>  
            
         </main>
@@ -129,42 +99,42 @@ export default function App() {
             </ul>
         </nav>
         <footer className="rodape fundo">
-            <div className='rodape_contatos'>
-                <div className="rodape_icone_telefone">
-                    <i className="fa fa-whatsapp" aria-hidden="true"></i>
-                    <div className='rodape_telefone'>
-                        <p>0800 123 2222</p>
-                        <p>Seg - Sex 8h-22h</p>
+            <div className='rodape_contatos fundo' >
+                <div className="rodape_icone_telefone fundo">
+                    <i className="fa fa-whatsapp fundo" aria-hidden="true"></i>
+                    <div className='rodape_telefone fundo'>
+                        <p className='fundo'>0800 123 2222</p>
+                        <p className='fundo'>Seg - Sex 8h-22h</p>
                     </div>                    
                 </div>
-                <div className="rodape_icone_chat">
-                    <i className="fa fa-comments" aria-hidden="true"></i>
-                    <div className='rodape_chat'>
-                        <p>Chat ao vivo</p>
-                        <p>Seg - Sex 8h-22h</p>
+                <div className="rodape_icone_chat fundo">
+                    <i className="fa fa-comments fundo" aria-hidden="true"></i>
+                    <div className='rodape_chat fundo'>
+                        <p className='fundo'>Chat ao vivo</p>
+                        <p className='fundo'>Seg - Sex 8h-22h</p>
                     </div>                    
                 </div>
-                <div className="rodape_icone_email">
-                    <i className="fa fa-envelope-o" aria-hidden="true"></i>
-                    <div className="rodape_email">
-                        <p>Mande um e-mail</p>
-                        <p>Respondemos rapidinho</p>
+                <div className="rodape_icone_email fundo">
+                    <i className="fa fa-envelope-o fundo" aria-hidden="true"></i>
+                    <div className="rodape_email fundo">
+                        <p className='fundo'>Mande um e-mail</p>
+                        <p className='fundo'>Respondemos rapidinho</p>
                     </div>                    
                 </div>
-                <div className="rodape_icone_ajuda">
-                    <i className="fa fa-info-circle" aria-hidden="true"></i>
-                    <div className="rodape_ajuda">
-                        <p>Central de ajuda</p>
-                        <p>Encontre todas as respostas</p>
+                <div className="rodape_icone_ajuda fundo">
+                    <i className="fa fa-info-circle fundo" aria-hidden="true"></i>
+                    <div className="rodape_ajuda fundo">
+                        <p className='fundo'>Central de ajuda</p>
+                        <p className='fundo'>Encontre todas as respostas</p>
                     </div>                    
                 </div>              
             </div>
-            <div className="rodape_assinatura">
-                <p>Feito com <i className="fa fa-heart-o" aria-hidden="true"></i> pela Quero Educação</p>
+            <div className="rodape_assinatura fundo">
+                <p className='fundo'>Feito com <i className="fa fa-heart-o fundo" aria-hidden="true"></i> pela Quero Educação</p>
             </div>
         </footer>
         <div className="modal">
-            <Modal></Modal>
+            <Modal fechar={fecharModal}/>
         </div>
     </>
     )
