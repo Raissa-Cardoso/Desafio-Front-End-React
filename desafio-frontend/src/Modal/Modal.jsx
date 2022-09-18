@@ -6,7 +6,31 @@ const logo=require("../assets/quero-Logo.jpg")
  
 
 export default function Modal(props){  
-    let ofertas=dados.filter(oferta=>oferta.campus.city=="São José dos Campos")      
+    let ofertas=dados.filter(oferta=>oferta.campus.city=="São José dos Campos")
+    let ofertasOrdenadas=ofertas.sort(function (a, b) {
+        if (a.course.name > b.course.name) {
+          return 1;
+        }
+        if (a.course.name < b.course.name) {
+          return -1;
+        }        
+        return 0;
+      })   
+    let cidadeDif=[]
+    let cidades=dados.map(cidade=>cidade.campus.city)
+    cidades.map(cidade=>{
+        if(cidadeDif.indexOf(cidade)==-1){
+            cidadeDif.push(cidade)
+        }
+    })
+    let cursosDif=[]
+    let cursos=dados.map(curso=>curso.course.name)
+    cursos.map(curso=>{
+        if(cursosDif.indexOf(curso)==-1){
+            cursosDif.push(curso)
+        }
+    })
+
     let [progressoClick, setProgressoClick]=useState(true)
     let [progressoBotao,setProgressoBotao]=useState(document.querySelector('.progressoBotao'))       
     function fecharModal(){
@@ -32,15 +56,21 @@ export default function Modal(props){
                 <div className="cidade">
                     <label htmlFor="cidade">SELECIONE SUA CIDADE</label>
                     <select id="cidade">
-                        <option value="sjc">São José dos Campos</option>
-                        <option value=""></option>    
+                        { 
+                            cidadeDif.sort().map((cidade,index)=>
+                                <option key={index} value={cidade}>{cidade}</option>
+                            )
+                        }
                     </select>
                 </div>
                 <div className="curso">
                     <label htmlFor="curso">SELECIONE O CURSO DE SUA PREFERÊNCIA</label>
-                    <select id="curso">
-                        <option value=""></option>
-                        <option value=""></option>    
+                    <select id="curso">                                                   
+                        { 
+                            cursosDif.sort().map((curso,index)=>
+                                <option key={index} value={curso}>{curso}</option>
+                            )
+                        }                      
                     </select>
                 </div>                
             </div>
@@ -73,23 +103,34 @@ export default function Modal(props){
                     <a href=''>Nome da Faculdade</a>
                 </div>    
             </div>
-            <div className="divisao"/>
-            <div className='faculdadeModal'>
-                <input type="checkbox" name="" id="" />
-                    <img src={ofertas[0].university.logo_url} alt="" />
-                    <div className='cursoModal'>
-                        <p>{ofertas[0].course.name}</p>
-                        <p>{ofertas[0].course.level}</p>
-                    </div>
-                    <div className='bolsaModal'>
-                        <div className='bolsaModalPorcentagem'>
-                            <p>Bolsa de </p>
-                            <p>{ofertas[0].discount_percentage} %</p>
+            <div className="divisao"/> 
+            <div className="faculdadesModal">
+                     
+                {ofertasOrdenadas.map((oferta,index)=>{
+                    return(
+                        <>
+                        <div className='faculdadeModal' key={index}>
+                            <input type="checkbox" name="" id="" />
+                            <img src={oferta.university.logo_url} alt="" />
+                            <div className='cursoModal'>
+                                <p>{oferta.course.name}</p>
+                                <p>{oferta.course.level}</p>
+                            </div>
+                            <div className='bolsaModal'>
+                                <div className='bolsaModalPorcentagem'>
+                                    <p>Bolsa de </p>
+                                    <p>{oferta.discount_percentage} %</p>
+                                </div>
+                                <p>R$ {oferta.price_with_discount} / mês</p>
+                            </div>                        
                         </div>
-                        <p>R$ {ofertas[0].price_with_discount} / mês</p>
-                    </div>              
-            </div>
-            <div className="divisao"/>
-        </>
+                        <div className="divisao"/>
+                    </>
+                    )
+                   
+                    })
+                }
+            </div>    
+    </>
     )
 }
