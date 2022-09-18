@@ -148,7 +148,6 @@ main{
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
 }
-
 nav{
     grid-area: navegacao;
     background-color: rgb(24,172,196);
@@ -181,13 +180,13 @@ header{
 }
 footer{
     grid-area: rodape;
-    color: #fff;
+    color: #fff;    
 }
 #root{
     display: grid; 
     min-height: 100vh;        
     grid-template-columns: 1fr;
-    grid-template-rows: 60px 30px 1fr 130px;
+    grid-template-rows: 60px 30px 1fr 100px;
     grid-template-areas: 
         'cabecalho'
         'navegacao'

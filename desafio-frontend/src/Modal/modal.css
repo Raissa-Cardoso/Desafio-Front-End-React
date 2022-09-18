@@ -18,9 +18,6 @@
     margin: 5px 0 0 20px;
     font-weight: 100;
 }
-.opacidade{       
-    background: rgba(0,0,0,0.8);
-}
 .modal .fecharModal{
     position: absolute;
     height: 30px;    
@@ -32,45 +29,49 @@
     background-color:rgba(0,0,0,0.8);
     border: none;
 }
-.modal .cidadeCurso{
-    display: flex;
+.modal .cidadeCurso{    
+    display: flex;    
     height: 40px;
-    margin: 20px 20px 0 20px;
+    margin: 20px 20px 0 20px; 
+    justify-content: space-between;   
 }
 .modal .cidadeCurso label,.modalidadePreço p{    
     font-size: 12px;  
     margin-bottom: 5px;  
 }
 .modal .cidadeCurso select{    
-    width: 80%;
+    width: 100%;
     padding: 2px 5px;
     font-weight: 200;
 }
 .cidadeCurso .cidade, .cidadeCurso .curso{
     display: flex;
-    flex-direction: column;
-    width: 50%;
+    flex-direction: column;   
+}
+.cidadeCurso .cidade{
+    width: 35%;
 }
 .modalidadePreço{
     height: 40px;
-    margin: 20px 0px 0 20px;
+    margin: 20px 0px 10px 20px;
     display: flex;
     flex-direction: row; 
     justify-content: space-between;   
 }
 .modalidadeModal{  
     display: flex;  
-    flex-direction: column;
+    flex-direction: column;        
 }
 .modalidadeModalOpcoes input{
-    margin: 20px 10px 0 5px;
-    border-radius: 5px;
+    margin: 20px 10px 0px 0px;    
+    border-radius: 5px;    
 }
 .modalidadeModalOpcoes label{
     font-weight: 200;
+    margin-right: 10px;
 }
-.preçoModal{    
-    width: 51%;    
+.preçoModal{       
+    width: 42%;        
 }
 .preçoModal p{
     margin: 0;
@@ -82,17 +83,87 @@
     margin-top: 20px;
     width: 75%;
     height: 3px;
-    background-color: black;
+    background-color: rgb(23,172,196);
     border-radius: 5px;
 }
-.linhaProgresso .progressoBotao{
-    background-color: red;
-    position: absolute;
+.linhaProgresso .progressoBotao{    
+    position: absolute;    
     border-radius: 100%;
+    border: solid 1px rgb(23,172,196);
+    background-color: #fff;
     height: 20px;
     width: 20px;
-    margin-top:calc(-10px);
+    margin-top:calc(-10px);    
     cursor: pointer;    
+}
+.resultados{
+    height: 20px;    
+    margin: 20px 0px 10px 20px;
+    font-size: 16px;
+    display: flex;
+    flex-direction: row; 
+    justify-content: space-between;       
+}
+.resultados .ordenar{
+    display: flex;
+    flex-direction: row;
+    width: 295px;    
+}
+.resultados .ordenar a{
+    margin-left: 20px;
+    color: rgb(0,135,192);
+}
+.resultados .ordenar a:link {
+    text-decoration: none;
+}
+.divisao{
+    height: 2px;
+    width: calc(100%-40px);
+    margin: 0 20px;
+    background-color: rgba(23,172,196,0.2);;
+}
+.faculdadeModal{
+    display: flex;
+    flex-direction: row;
+    margin: 20px 0px 10px 20px;
+    height: 40px;
+    justify-content: space-between;
+}
+.faculdadeModal img{
+    width: 60px;
+    height: 30px;    
+}
+.faculdadeModal .cursoModal{
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    width: 380px;
+}
+.faculdadeModal .cursoModal p, .faculdadeModal .bolsaModal p{
+    font-weight: 200;
+}
+.faculdadeModal .cursoModal p:nth-child(1){
+    color: rgb(0,135,192);
+    font-weight: bold;
+}
+.faculdadeModal .bolsaModal{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    font-size: 16px;
+    width: 120px;
+    margin-right: 20px;        
+}
+.faculdadeModal .bolsaModal .bolsaModalPorcentagem{
+    display: flex;
+    flex-direction: row;      
+}
+.faculdadeModal .bolsaModal .bolsaModalPorcentagem p:nth-child(1){
+    margin-right: 5px;
+}
+.faculdadeModal .bolsaModal .bolsaModalPorcentagem p:nth-child(2),.faculdadeModal .bolsaModal p:nth-child(2){
+    color: rgb(32, 151, 86);
+    font-weight: bold;
 }
 
 

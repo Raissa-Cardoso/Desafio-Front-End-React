@@ -1,5 +1,5 @@
 import './index.css'
-import React,{useState} from 'react'
+import React,{useState, useEffect} from 'react'
 
 import Modal from "./Modal/Modal"
 import Card from './Card/Card'
@@ -8,24 +8,26 @@ import BolsasAdicionadas from './Bolsas adicionadas/BolsasAdicionadas'
 
 const logo=require("./assets/quero-Logo.jpg")
 
-export default function App() {    
+export default function App() {     
+    let [abrir, setAbrir]=useState(false)
     let [modal,setModal]=useState(document.querySelector('.modal'))
-    let [fundos,setFundos]=useState(document.querySelectorAll('.fundo'))
-    function abrirModal(){        
-        setModal(document.querySelector('.modal'))
-        modal.style.display="flex"
-        /*setFundos(document.querySelectorAll('.fundo'))        
-        fundos.forEach(fundo=>{
-            fundo.style.background='rgba(0,0,0,0.8)'
-        })*/               
+    let [fundos,setFundos]=useState(document.querySelectorAll('.fundo')) 
+    useEffect(() => {
+        setModal((state) => abrir?document.querySelector('.modal').style.display="flex":document.querySelector('.modal').style.display="none");
+        setFundos((state)=> abrir?document.querySelectorAll('.fundo').forEach(fundo=>{                       
+                fundo.style.filter="brightness(0.8)"})
+            :document.querySelectorAll('.fundo').forEach(fundo=>{                       
+                fundo.style.filter="brightness(1)"}))
+    },[abrir]);  
+    function abrirModal(){ 
+        setAbrir(state => !state)       
+        setFundos(document.querySelectorAll('.fundo'))                      
+        fundos.forEach(fundo=>{                       
+            fundo.style.filter="brightness(0.8)"            
+        })              
     }
     function fecharModal(){
-        setModal(document.querySelector('.modal'))
-        modal.style.display="none"
-        /*setFundos(document.querySelectorAll('.fundo'))
-        fundos.forEach(fundo=>{
-            fundo.style.backgroundColor='rgba(0,0,0,0)'
-        })*/
+        setAbrir(state => !state)
     }
     
     return (
