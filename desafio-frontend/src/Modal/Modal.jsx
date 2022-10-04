@@ -21,17 +21,18 @@ export default function Modal(props){
             cursosDif.push(curso)
         }
     })
-    let [cursosOp,setCursosOp]=useState(cursosDif.sort()[0])  
-    let ofertas
+    let [cursosOp,setCursosOp]=useState(" ")  
+    let ofertas=dados.filter(oferta=>oferta.campus.city==cidadesOp)    
     if(cidadesOp==" " && cursosOp!=" "){
         ofertas=dados.filter(oferta=>oferta.course.name==cursosOp)
-    }else if (cursosOp==" " && cidadesOp!=" "){
+    }else if (cursosOp==" " && cidadesOp!=" "){        
         ofertas=dados.filter(oferta=>oferta.campus.city==cidadesOp)
     }else if (cidadesOp!=" " && cursosOp!=" "){
         ofertas=dados.filter(oferta=>oferta.course.name==cursosOp&&oferta.campus.city==cidadesOp)
     }else{
         ofertas=dados.filter(oferta=>oferta.campus.city==cidadesOp)
     }
+
     let ofertasOrdenadas=ofertas.sort(function (a, b) {
         if (a.course.name > b.course.name) {
           return 1;
@@ -64,6 +65,14 @@ export default function Modal(props){
     function alterarCurso(){              
         setCursosOp(document.querySelector('#curso').value)            
     }
+    let [modalidadeOp,setModalidadeOp]=useState()
+    function selecionarModalidade(){
+        let modalidade=document.querySelector('input[name="modalidadeCheck"]:checked').value
+        setModalidadeOp(modalidade)
+        console.log(modalidadeOp)  
+    }
+  
+   
     
     return(
         <>
@@ -84,13 +93,13 @@ export default function Modal(props){
                 </div>
                 <div className="curso">
                     <label htmlFor="curso">SELECIONE O CURSO DE SUA PREFERÊNCIA</label>
-                    <select id="curso" onChange={alterarCurso}>                                                   
+                    <select id="curso" onChange={alterarCurso}>  
+                        <option value=" "></option>                                                   
                         { 
                             cursosDif.sort().map((curso,index)=>
                                 <option key={index} value={curso}>{curso}</option>
                             )
-                        } 
-                        <option value=" "></option>                     
+                        }                                            
                     </select>
                 </div>                
             </div>
@@ -98,10 +107,10 @@ export default function Modal(props){
                 <div className="modalidadeModal">
                     <p>COMO VOCÊ QUER ESTUDAR?</p>  
                     <div className="modalidadeModalOpcoes">
-                        <input type="checkbox" id="presencial" name="modalidadeCheck" value="presencial"/>
-                        <label htmlFor='presencial' >Presencial                             
+                        <input type="checkbox" className='modalidadeCheck' name="modalidadeCheck" value="presencial" onClick={()=>selecionarModalidade()}/>
+                        <label htmlFor='presencial' value="presencial">Presencial                             
                         </label> 
-                        <input type="checkbox" id="adistancia" name="modalidadeCheck"/>                   
+                        <input type="checkbox" className='modalidadeCheck' name="modalidadeCheck" value="adistancia" onClick={()=>selecionarModalidade()}/>                   
                         <label htmlFor='adistancia' value="adistancia">A distância                             
                         </label>
                     </div>         
