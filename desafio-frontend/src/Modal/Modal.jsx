@@ -6,7 +6,32 @@ const logo=require("../assets/quero-Logo.jpg")
  
 
 export default function Modal(props){  
-    let ofertas=dados.filter(oferta=>oferta.campus.city=="São José dos Campos")
+    let cidadeDif=[]
+    let cidades=dados.map(cidade=>cidade.campus.city)
+    cidades.map(cidade=>{
+        if(cidadeDif.indexOf(cidade)==-1){
+            cidadeDif.push(cidade)
+        }
+    })
+    let [cidadesOp,setCidadesOp]=useState(cidadeDif.sort()[0])    
+    let cursosDif=[]
+    let cursos=dados.map(curso=>curso.course.name)
+    cursos.map(curso=>{
+        if(cursosDif.indexOf(curso)==-1){
+            cursosDif.push(curso)
+        }
+    })
+    let [cursosOp,setCursosOp]=useState(cursosDif.sort()[0])  
+    let ofertas
+    if(cidadesOp==" " && cursosOp!=" "){
+        ofertas=dados.filter(oferta=>oferta.course.name==cursosOp)
+    }else if (cursosOp==" " && cidadesOp!=" "){
+        ofertas=dados.filter(oferta=>oferta.campus.city==cidadesOp)
+    }else if (cidadesOp!=" " && cursosOp!=" "){
+        ofertas=dados.filter(oferta=>oferta.course.name==cursosOp&&oferta.campus.city==cidadesOp)
+    }else{
+        ofertas=dados.filter(oferta=>oferta.campus.city==cidadesOp)
+    }
     let ofertasOrdenadas=ofertas.sort(function (a, b) {
         if (a.course.name > b.course.name) {
           return 1;
@@ -15,38 +40,31 @@ export default function Modal(props){
           return -1;
         }        
         return 0;
-      })   
-    let cidadeDif=[]
-    let cidades=dados.map(cidade=>cidade.campus.city)
-    cidades.map(cidade=>{
-        if(cidadeDif.indexOf(cidade)==-1){
-            cidadeDif.push(cidade)
-        }
-    })
-    let cursosDif=[]
-    let cursos=dados.map(curso=>curso.course.name)
-    cursos.map(curso=>{
-        if(cursosDif.indexOf(curso)==-1){
-            cursosDif.push(curso)
-        }
-    })
-
+      })    
     let [progressoClick, setProgressoClick]=useState(true)
     let [progressoBotao,setProgressoBotao]=useState(document.querySelector('.progressoBotao'))       
     function fecharModal(){
        props.fechar()           
     }
     useEffect(() => {
-        setProgressoBotao((state) => progressoClick?document.querySelector('.progressoBotao').style.marginLeft='calc(+5px)' : document.querySelector('.progressoBotao').style.marginLeft);
-    },[progressoClick]);
-    
+        //setProgressoBotao((state) => progressoClick?document.querySelector('.progressoBotao').style.marginLeft : document.querySelector('.progressoBotao').style.marginLeft='calc(+5px)');
+        //setProgressoBotao((state) => progressoClick?document.querySelector('.progressoBotao').style.transform='translateX(5px)' : document.querySelector('.progressoBotao').style.transform='translateX(5px)');
+        
+    },[progressoBotao]);    
     function clicarProgressoBotao(){
         setProgressoClick(state => !state)
-        //setprogressoBotao(document.querySelector('.progressoBotao'))
+        setProgressoBotao(document.querySelector('.progressoBotao'))        
         //progressoBotao.style.marginLeft='calc(+5px)'        
         //progressoBotao.style.transition='progresso-animacao 5s infinite'
-        
+        //progressoBotao.style.transformn='translateX(10px)'        
     }
+    function alterarCidade(){        
+        setCidadesOp(document.querySelector('#cidade').value)            
+    }
+    function alterarCurso(){              
+        setCursosOp(document.querySelector('#curso').value)            
+    }
+    
     return(
         <>
             <button className="fecharModal" type="submit" onClick={fecharModal}>X</button>
@@ -55,22 +73,24 @@ export default function Modal(props){
             <div className='cidadeCurso'>
                 <div className="cidade">
                     <label htmlFor="cidade">SELECIONE SUA CIDADE</label>
-                    <select id="cidade">
+                    <select id="cidade" onChange={alterarCidade}>                        
                         { 
                             cidadeDif.sort().map((cidade,index)=>
                                 <option key={index} value={cidade}>{cidade}</option>
                             )
                         }
+                        <option value=" "></option>
                     </select>
                 </div>
                 <div className="curso">
                     <label htmlFor="curso">SELECIONE O CURSO DE SUA PREFERÊNCIA</label>
-                    <select id="curso">                                                   
+                    <select id="curso" onChange={alterarCurso}>                                                   
                         { 
                             cursosDif.sort().map((curso,index)=>
                                 <option key={index} value={curso}>{curso}</option>
                             )
-                        }                      
+                        } 
+                        <option value=" "></option>                     
                     </select>
                 </div>                
             </div>

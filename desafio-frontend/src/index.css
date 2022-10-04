@@ -71,7 +71,7 @@ main{
     grid-area: conteudo;
     color: rgb(0,121,141);
     display: grid;
-    grid-template-rows: 10px 30px 30px 80px;
+    grid-template-rows: 10px 30px 30px 60px;
     grid-template-columns: 40% 40%;
     justify-content: space-around;
     grid-template-areas: 
