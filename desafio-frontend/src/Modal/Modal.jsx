@@ -22,15 +22,58 @@ export default function Modal(props){
         }
     })
     let [cursosOp,setCursosOp]=useState(" ")  
-    let ofertas=dados.filter(oferta=>oferta.campus.city==cidadesOp)    
-    if(cidadesOp==" " && cursosOp!=" "){
-        ofertas=dados.filter(oferta=>oferta.course.name==cursosOp)
-    }else if (cursosOp==" " && cidadesOp!=" "){        
-        ofertas=dados.filter(oferta=>oferta.campus.city==cidadesOp)
-    }else if (cidadesOp!=" " && cursosOp!=" "){
-        ofertas=dados.filter(oferta=>oferta.course.name==cursosOp&&oferta.campus.city==cidadesOp)
-    }else{
-        ofertas=dados.filter(oferta=>oferta.campus.city==cidadesOp)
+    let [modalidade,setModalidade]=useState({Presencial:false,EaD:false})
+    function selecionarModalidade(){  
+        if(document.querySelector('#modPresencial').checked){
+            setModalidade(previousState => {
+                return { ...previousState, Presencial:true }
+            })
+        }else{
+            setModalidade(previousState => {
+                return { ...previousState, Presencial:false }
+            }) 
+        }
+        if(document.querySelector('#modEad').checked){                        
+            setModalidade(previousState => {
+                return { ...previousState, EaD:true }
+            })           
+        }else{
+            setModalidade(previousState => {
+                return { ...previousState, EaD:false }
+            }) 
+        }
+    }
+    let ofertas=dados.filter(oferta=>oferta.campus.city==cidadesOp) 
+    if((!modalidade.Presencial && !modalidade.EaD)||(modalidade.Presencial && modalidade.EaD)){
+        if(cidadesOp==" " && cursosOp!=" "){
+            ofertas=dados.filter(oferta=>oferta.course.name==cursosOp)
+        }else if (cursosOp==" " && cidadesOp!=" "){        
+            ofertas=dados.filter(oferta=>oferta.campus.city==cidadesOp)
+        }else if (cidadesOp!=" " && cursosOp!=" "){
+            ofertas=dados.filter(oferta=>oferta.course.name==cursosOp&&oferta.campus.city==cidadesOp)
+        }else{
+            ofertas=dados.filter(oferta=>oferta.campus.city==cidadesOp)
+        }
+    }else if(modalidade.Presencial && !modalidade.EaD){
+        if(cidadesOp==" " && cursosOp!=" "){
+            ofertas=dados.filter(oferta=>oferta.course.name==cursosOp&&oferta.course.kind=="Presencial")
+        }else if (cursosOp==" " && cidadesOp!=" "){        
+            ofertas=dados.filter(oferta=>oferta.campus.city==cidadesOp&&oferta.course.kind=="Presencial")
+        }else if (cidadesOp!=" " && cursosOp!=" "){
+            ofertas=dados.filter(oferta=>oferta.course.name==cursosOp&&oferta.campus.city==cidadesOp&&oferta.course.kind=="Presencial")
+        }else{
+            ofertas=dados.filter(oferta=>oferta.campus.city==cidadesOp&&oferta.course.kind=="Presencial")
+        }
+    }else if(modalidade.EaD && !modalidade.Presencial){
+        if(cidadesOp==" " && cursosOp!=" "){
+            ofertas=dados.filter(oferta=>oferta.course.name==cursosOp&&oferta.course.kind=="EaD")
+        }else if (cursosOp==" " && cidadesOp!=" "){        
+            ofertas=dados.filter(oferta=>oferta.campus.city==cidadesOp&&oferta.course.kind=="EaD")
+        }else if (cidadesOp!=" " && cursosOp!=" "){
+            ofertas=dados.filter(oferta=>oferta.course.name==cursosOp&&oferta.campus.city==cidadesOp&&oferta.course.kind=="EaD")
+        }else{
+            ofertas=dados.filter(oferta=>oferta.campus.city==cidadesOp&&oferta.course.kind=="EaD")
+        }
     }
 
     let ofertasOrdenadas=ofertas.sort(function (a, b) {
@@ -65,15 +108,7 @@ export default function Modal(props){
     function alterarCurso(){              
         setCursosOp(document.querySelector('#curso').value)            
     }
-    let [modalidadeOp,setModalidadeOp]=useState()
-    function selecionarModalidade(){
-        let modalidade=document.querySelector('input[name="modalidadeCheck"]:checked').value
-        setModalidadeOp(modalidade)
-        console.log(modalidadeOp)  
-    }
-  
-   
-    
+
     return(
         <>
             <button className="fecharModal" type="submit" onClick={fecharModal}>X</button>
@@ -107,10 +142,10 @@ export default function Modal(props){
                 <div className="modalidadeModal">
                     <p>COMO VOCÊ QUER ESTUDAR?</p>  
                     <div className="modalidadeModalOpcoes">
-                        <input type="checkbox" className='modalidadeCheck' name="modalidadeCheck" value="presencial" onClick={()=>selecionarModalidade()}/>
+                        <input type="checkbox" className='modalidadeCheck' name="modalidadeCheck" value="presencial" id="modPresencial" onClick={()=>selecionarModalidade()}/>
                         <label htmlFor='presencial' value="presencial">Presencial                             
                         </label> 
-                        <input type="checkbox" className='modalidadeCheck' name="modalidadeCheck" value="adistancia" onClick={()=>selecionarModalidade()}/>                   
+                        <input type="checkbox" className='modalidadeCheck' name="modalidadeCheck" value="adistancia" id="modEad" onClick={()=>selecionarModalidade()}/>                   
                         <label htmlFor='adistancia' value="adistancia">A distância                             
                         </label>
                     </div>         
