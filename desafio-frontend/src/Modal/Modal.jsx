@@ -49,15 +49,15 @@ export default function Modal(props){
             curso:curso,
             presencial:presencial,
             ead:ead
-        }        
+        }
     }
     let buscaOfertas=buscarOfertas(cidadesOp,cursosOp,modalidade.Presencial,modalidade.EaD)
     let ofertas=dados.filter(oferta=>oferta.campus.city==cidadesOp)
     if(Object.values(buscaOfertas)[0]!=" ") ofertas=ofertas.filter(oferta=>oferta.campus.city==cidadesOp)
     if(Object.values(buscaOfertas)[1]!=" ") Object.values(buscaOfertas)[0]==" "?ofertas=dados.filter(oferta=>oferta.course.name==cursosOp):ofertas=ofertas.filter(oferta=>oferta.course.name==cursosOp) 
-    if(Object.values(buscaOfertas)[2]!=false&&Object.values(buscaOfertas)[3]!=true) ofertas=ofertas.filter(oferta=>oferta.course.kind=="EaD") 
-    if(Object.values(buscaOfertas)[3]!=false&&Object.values(buscaOfertas)[2]!=true) ofertas=ofertas.filter(oferta=>oferta.course.kind=="Presencial")
-    if(Object.values(buscaOfertas)[2]==true&&Object.values(buscaOfertas)[3]==true) ofertas=ofertas.filter(oferta=>oferta.course.kind=="Presencial"||oferta.course.kind=="EaD")
+    if(Object.values(buscaOfertas)[2]!=false&&Object.values(buscaOfertas)[3]!=true) ofertas.length==0?ofertas=dados.filter(oferta=>oferta.course.kind=="EaD"):ofertas=ofertas.filter(oferta=>oferta.course.kind=="EaD") 
+    if(Object.values(buscaOfertas)[3]!=false&&Object.values(buscaOfertas)[2]!=true) ofertas.length==0?ofertas=dados.filter(oferta=>oferta.course.kind=="Presencial"):ofertas=ofertas.filter(oferta=>oferta.course.kind=="Presencial")
+    if(Object.values(buscaOfertas)[2]==true&&Object.values(buscaOfertas)[3]==true) ofertas.length==0?ofertas=dados.filter(oferta=>oferta.course.kind=="Presencial"||oferta.course.kind=="EaD"):ofertas=ofertas.filter(oferta=>oferta.course.kind=="Presencial"||oferta.course.kind=="EaD")
     if(Object.values(buscaOfertas)[0]==" "&&Object.values(buscaOfertas)[1]==" "&&Object.values(buscaOfertas)[2]==false&&Object.values(buscaOfertas)[3]==false)ofertas=dados.map(oferta=>oferta)
     
     let ofertasOrdenadas=ofertas.sort(function (a, b) {
