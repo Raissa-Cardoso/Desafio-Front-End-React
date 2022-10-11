@@ -58,6 +58,7 @@ export default function Modal(props){
     if(Object.values(buscaOfertas)[2]!=false&&Object.values(buscaOfertas)[3]!=true) ofertas=ofertas.filter(oferta=>oferta.course.kind=="EaD") 
     if(Object.values(buscaOfertas)[3]!=false&&Object.values(buscaOfertas)[2]!=true) ofertas=ofertas.filter(oferta=>oferta.course.kind=="Presencial")
     if(Object.values(buscaOfertas)[2]==true&&Object.values(buscaOfertas)[3]==true) ofertas=ofertas.filter(oferta=>oferta.course.kind=="Presencial"||oferta.course.kind=="EaD")
+    if(Object.values(buscaOfertas)[0]==" "&&Object.values(buscaOfertas)[1]==" "&&Object.values(buscaOfertas)[2]==false&&Object.values(buscaOfertas)[3]==false)ofertas=dados.map(oferta=>oferta)
     
     let ofertasOrdenadas=ofertas.sort(function (a, b) {
         if (a.course.name > b.course.name) {
