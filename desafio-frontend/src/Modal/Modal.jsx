@@ -43,39 +43,22 @@ export default function Modal(props){
             }) 
         }
     }
-    let ofertas=dados.filter(oferta=>oferta.campus.city==cidadesOp) 
-    if((!modalidade.Presencial && !modalidade.EaD)||(modalidade.Presencial && modalidade.EaD)){
-        if(cidadesOp==" " && cursosOp!=" "){
-            ofertas=dados.filter(oferta=>oferta.course.name==cursosOp)
-        }else if (cursosOp==" " && cidadesOp!=" "){        
-            ofertas=dados.filter(oferta=>oferta.campus.city==cidadesOp)
-        }else if (cidadesOp!=" " && cursosOp!=" "){
-            ofertas=dados.filter(oferta=>oferta.course.name==cursosOp&&oferta.campus.city==cidadesOp)
-        }else{
-            ofertas=dados.filter(oferta=>oferta.campus.city==cidadesOp)
-        }
-    }else if(modalidade.Presencial && !modalidade.EaD){
-        if(cidadesOp==" " && cursosOp!=" "){
-            ofertas=dados.filter(oferta=>oferta.course.name==cursosOp&&oferta.course.kind=="Presencial")
-        }else if (cursosOp==" " && cidadesOp!=" "){        
-            ofertas=dados.filter(oferta=>oferta.campus.city==cidadesOp&&oferta.course.kind=="Presencial")
-        }else if (cidadesOp!=" " && cursosOp!=" "){
-            ofertas=dados.filter(oferta=>oferta.course.name==cursosOp&&oferta.campus.city==cidadesOp&&oferta.course.kind=="Presencial")
-        }else{
-            ofertas=dados.filter(oferta=>oferta.campus.city==cidadesOp&&oferta.course.kind=="Presencial")
-        }
-    }else if(modalidade.EaD && !modalidade.Presencial){
-        if(cidadesOp==" " && cursosOp!=" "){
-            ofertas=dados.filter(oferta=>oferta.course.name==cursosOp&&oferta.course.kind=="EaD")
-        }else if (cursosOp==" " && cidadesOp!=" "){        
-            ofertas=dados.filter(oferta=>oferta.campus.city==cidadesOp&&oferta.course.kind=="EaD")
-        }else if (cidadesOp!=" " && cursosOp!=" "){
-            ofertas=dados.filter(oferta=>oferta.course.name==cursosOp&&oferta.campus.city==cidadesOp&&oferta.course.kind=="EaD")
-        }else{
-            ofertas=dados.filter(oferta=>oferta.campus.city==cidadesOp&&oferta.course.kind=="EaD")
-        }
+    function buscarOfertas(cidade, curso, presencial, ead){
+        return{
+            cidade:cidade,
+            curso:curso,
+            presencial:presencial,
+            ead:ead
+        }        
     }
-
+    let buscaOfertas=buscarOfertas(cidadesOp,cursosOp,modalidade.Presencial,modalidade.EaD)
+    let ofertas=dados.filter(oferta=>oferta.campus.city==cidadesOp)
+    if(Object.values(buscaOfertas)[0]!=" ") ofertas=ofertas.filter(oferta=>oferta.campus.city==cidadesOp)
+    if(Object.values(buscaOfertas)[1]!=" ") Object.values(buscaOfertas)[0]==" "?ofertas=dados.filter(oferta=>oferta.course.name==cursosOp):ofertas=ofertas.filter(oferta=>oferta.course.name==cursosOp) 
+    if(Object.values(buscaOfertas)[2]!=false&&Object.values(buscaOfertas)[3]!=true) ofertas=ofertas.filter(oferta=>oferta.course.kind=="EaD") 
+    if(Object.values(buscaOfertas)[3]!=false&&Object.values(buscaOfertas)[2]!=true) ofertas=ofertas.filter(oferta=>oferta.course.kind=="Presencial")
+    if(Object.values(buscaOfertas)[2]==true&&Object.values(buscaOfertas)[3]==true) ofertas=ofertas.filter(oferta=>oferta.course.kind=="Presencial"||oferta.course.kind=="EaD")
+    
     let ofertasOrdenadas=ofertas.sort(function (a, b) {
         if (a.course.name > b.course.name) {
           return 1;
