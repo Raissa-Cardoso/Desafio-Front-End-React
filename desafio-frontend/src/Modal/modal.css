@@ -84,7 +84,7 @@
 }
 .linhaProgresso{
     margin-top: 20px;
-    width: 75%;
+    width: 90%;
     height: 3px;
     background-color: rgb(23,172,196);
     border-radius: 5px;
@@ -112,12 +112,13 @@
     flex-direction: row;
     width: 295px;    
 }
-.resultados .ordenar a{
+.resultados #universidadeOp{
     margin-left: 20px;
     color: rgb(0,135,192);
-}
-.resultados .ordenar a:link {
-    text-decoration: none;
+    border: none;
+    font-size: 14px;
+    width: 160px;
+    text-align: center;
 }
 .divisao{
     height: 2px;
