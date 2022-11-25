@@ -2,7 +2,7 @@ import './modal.css'
 import React,{useState,useEffect} from 'react'
 import dados from'../data/db.json'
 
-//const logo=require("../assets/quero-Logo.jpg")
+const logo=require("../assets/quero-Logo.jpg")
  
 
 export default function Modal(props){  
