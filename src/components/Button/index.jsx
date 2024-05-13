@@ -1,8 +1,8 @@
 import {Container} from './styles';
 
-export function Button({type,title}){
+export function Button({type,title, onClick}){
     return(
-        <Container>
+        <Container onClick={onClick}>
         {type === 'disabled' ? (
           <div className='disabled'>
             <p>{title}</p>            

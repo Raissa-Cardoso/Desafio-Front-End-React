@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {Container} from './styles';
 import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
@@ -8,7 +8,8 @@ import { Modal } from '../../components/Modal';
 
 export function Home(){
     const [modalOpen, setModalOpen] = useState(false);
-    const offer=data[0]
+    const [offers, setOffers]=useState([])
+    const[offersFiltered, setOffersFiltered]=useState([])
 
     const clickModal=(open)=>{
         setModalOpen(open)                
@@ -22,6 +23,20 @@ export function Home(){
           handleCloseModal();
         }*/
     };
+
+    const onSetOffers = (offers) => {
+        setOffers(offers);
+        let filteredOffers = [];
+        offers.forEach(offer => {
+            let filtered = data.filter(offerFilter => {
+                return offerFilter.university.name === offer.universityName &&
+                       offerFilter.course.name === offer.courseName &&
+                       offerFilter.price_with_discount === parseFloat(offer.pricePerMonth);
+            });
+            filteredOffers = [...filteredOffers, ...filtered];
+        });
+        setOffersFiltered(filteredOffers);
+    };  
 
     return(
         <Container onClick={handlePageClick}>
@@ -37,9 +52,9 @@ export function Home(){
                 </div>
                 <div className="cards">
                     <Card initial clickModal={clickModal}/>
-                    {//offer.map((offer,index)=>(
+                    {offersFiltered.map((offer,index)=>(
                         <Card 
-                            //key={index}                             
+                            key={index}                             
                             logo={offer.university.logo_url} 
                             university={offer.university.name} 
                             course={offer.course.name}
@@ -51,12 +66,11 @@ export function Home(){
                             price_with_discount={offer.price_with_discount}
                             enabled={offer.enabled}
                         />
-                    //))
-                    }                    
+                    ))}                   
                 </div>
             </main>
             <Footer/>
-            <Modal isOpen={modalOpen} onClose={handleCloseModal} />
+            <Modal isOpen={modalOpen} onClose={handleCloseModal} onSetOffers={onSetOffers}/>
         </Container>
     )
 }

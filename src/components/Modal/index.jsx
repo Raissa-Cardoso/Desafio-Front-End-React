@@ -7,7 +7,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import { Button } from '../Button';
 import {data} from '../../utils/data';
 
-export function Modal({isOpen, onClose}){
+export function Modal({isOpen, onClose, onSetOffers}){
     if (!isOpen) return null;
 
     const cities = [...new Set(data.map(offer => offer.campus.city))].sort();    
@@ -18,6 +18,7 @@ export function Modal({isOpen, onClose}){
     const [ead, setEad] = useState(false); 
     const [selectedPrice, setSelectedPrice] = useState(0);
     let [filteredData,setFilteredData]=useState(data)
+    const [offerData, setOfferData]=useState([])
 
     const handleCityChange = (e) => {
         setSelectedCity(e.target.value);
@@ -26,12 +27,12 @@ export function Modal({isOpen, onClose}){
 
     const handleCourseChange = (e) => {
         setSelectedCourse(e.target.value);
-        applyFilters(selectedCity, e.target.value, presencial, ead, SelectedPrice);
+        applyFilters(selectedCity, e.target.value, presencial, ead, selectedPrice);
     };
 
     const handlePresencialChange = (e) => {
         setPresencial(e.target.checked);
-        applyFilters(selectedCity, selectedCourse, e.target.checked ? 'Presencial' : '', ead, setEadelectedPrice);
+        applyFilters(selectedCity, selectedCourse, e.target.checked ? 'Presencial' : '', ead, selectedPrice);
     };
 
     const handleEadChange = (e) => {
@@ -66,16 +67,25 @@ export function Modal({isOpen, onClose}){
         setFilteredData(filtered);
     };
 
-    const handleAddBolsa = () => {
-        console.log("ok")
-        /*const checkedOffers = document.querySelectorAll('.checkOffer:checked');
-        console.log(checkedOffers)
+    const handleAddBolsa = () => {        
+        const checkedOffers = document.querySelectorAll('.checkOffer:checked');        
+        let offerDataUpdated=[]           
         checkedOffers.forEach(offer => {
-            console.log(offer.parentElement.querySelector('.course p').innerText);
-        });*/
-    };
+            const offerElement = offer.parentElement;
+            const courseElement = offerElement.querySelector('.course');
+            const priceElement = offerElement.querySelector('.price');          
+            
+            offerDataUpdated.push({
+                universityName: offerElement.querySelector('img').alt.split("Logo da ")[1],                
+                courseName: courseElement.querySelector('p').innerText,               
+                pricePerMonth: priceElement.querySelector('p + p').innerText.match(/R\$\s*([\d\.,]+)\s*\/\s*(\w+)/)[1]
+            });             
+        });                                   
+        onSetOffers(offerDataUpdated) 
+        onClose()       
+    };   
     
-
+    
     return(
         <Overlay >        
             <ModalContent> 
@@ -134,7 +144,7 @@ export function Modal({isOpen, onClose}){
                         <div className="offers">
                             {filteredData.map((offer,index)=>(
                                 <div className="offer" key={index}>
-                                    <input type="checkbox" className='checkOffer'/>
+                                    <input type="checkbox" className='checkOffer' id={`checkbox-${index}`}/>
                                     <img src={offer.university.logo_url} alt={`Logo da ${offer.university.name}`} />
                                     <div className="course">
                                         <p>{offer.course.name}</p>
@@ -150,8 +160,8 @@ export function Modal({isOpen, onClose}){
                     </fieldset>                   
                 </form>
                 <footer>
-                    <Button form="my-form" type="delete" title="Cancelar"/>
-                    <Button form="my-form" type="normal" title="Adicionar bolsa(s)" onClick={handleAddBolsa}/>
+                    <Button form='myForm' type="delete" title="Cancelar"/>
+                    <Button form='myForm' type="normal" title="Adicionar bolsa(s)" onClick={handleAddBolsa} />
                 </footer>
             </ModalContent>
         </Overlay>
