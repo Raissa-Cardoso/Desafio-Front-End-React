@@ -5,9 +5,7 @@ export const Container = styled.footer`
     grid-area: 'footer';
     height: 100%; 
     width: 100vw;
-    
-    border: solid 2px black;
-    
+       
     color: ${({theme}) => theme.COLORS.FONT_WHITE};
     font-size: ${({theme}) => theme.FONTS.SMALLEST};
     font-weight: bold;
