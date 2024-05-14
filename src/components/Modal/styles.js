@@ -1,4 +1,5 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
+import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakpoints";
 
 export const Overlay = styled.div`
     position: fixed;
@@ -20,11 +21,16 @@ export const ModalContent = styled.div`
     padding: 4rem 2rem;   
     color:  ${({theme}) => theme.COLORS.FONT_BLACK};
     height: 90%;
-    width:50%;
+    min-width:50vw;
     
     display: flex;
     flex-direction: column; 
-    position: relative;    
+    position: relative;   
+    
+    @media (max-width: ${DEVICE_BREAKPOINTS.LG}){
+        width:80vw;
+        padding:1rem;
+    }
       
     >header{        
         position: absolute;
@@ -40,7 +46,12 @@ export const ModalContent = styled.div`
     }
     >form{
         display: flex;
-        flex-direction: column;       
+        flex-direction: column;          
+
+        @media (max-width: ${DEVICE_BREAKPOINTS.LG}){
+            align-items: center;
+        }
+        
         >fieldset{
             border: none;
             padding: 1rem 2rem;
@@ -50,21 +61,33 @@ export const ModalContent = styled.div`
             }
             legend + p{
                 font-size: ${({theme}) => theme.FONTS.SMALLEST};                
+            }            
+        }
+        fieldset:nth-child(1){
+            @media (max-width: ${DEVICE_BREAKPOINTS.LG}){
+                width: 65vw;
+                border: solid 1px red;
             }
         }
 
         fieldset:nth-child(2){
             display: flex;
             align-items: center;
-            justify-content: space-between;            
+            justify-content: space-between;  
+            
+            @media (max-width: ${DEVICE_BREAKPOINTS.LG}){
+                flex-direction: column;
+                gap: 1rem;                
+                align-items: flex-start;
+            }
             .city, .course{
                 display: flex;
                 flex-direction: column;
                 gap:1rem;
                 >label{
-                text-transform: uppercase;
-                font-weight: bold;
-                font-size: ${({theme}) => theme.FONTS.SMALLEST};
+                    text-transform: uppercase;
+                    font-weight: bold;
+                    font-size: ${({theme}) => theme.FONTS.SMALLEST};
                 }
                 >select{
                     display: block;
@@ -72,7 +95,11 @@ export const ModalContent = styled.div`
                     width: 40rem;                    
                     border-radius: 0.5rem;
                     font-size: ${({theme}) => theme.FONTS.SMALLEST};
+                    @media (max-width: ${DEVICE_BREAKPOINTS.LG}){
+                        width: 65vw;
+                    }
                 }
+
 
             }
         }
@@ -80,12 +107,21 @@ export const ModalContent = styled.div`
             display: flex;
             align-items: center;
             justify-content: space-between;
+
+            @media (max-width: ${DEVICE_BREAKPOINTS.LG}){
+                flex-direction: column;
+                gap: 1rem;                
+                align-items: flex-start;
+            }
             
             .kind, .price{
                 display: flex;
                 flex-direction: column;
                 gap:1rem;
                 width: 40rem;  
+                @media (max-width: ${DEVICE_BREAKPOINTS.LG}){
+                    width:100%
+                }
                 >p{
                     text-transform: uppercase;
                     font-weight: bold;
@@ -102,11 +138,14 @@ export const ModalContent = styled.div`
                     display:flex;
                     flex-direction: column;
                     gap: 0.5rem;
+                    @media (max-width: ${DEVICE_BREAKPOINTS.LG}){
+                        width:65vw;
+                    }
                 }
             }
         }
-        fieldset:nth-child(4){
-           
+
+        fieldset:nth-child(4){           
             .result{
                 display: flex;
                 align-items: center;
@@ -116,9 +155,17 @@ export const ModalContent = styled.div`
                 padding-bottom: 1rem;
                 border-bottom: solid 2px ${({theme}) => theme.COLORS.LINE};
 
+                @media (max-width: ${DEVICE_BREAKPOINTS.LG}){                    
+                    width:70vw;                    
+                }
+
                 p:nth-child(2){
                     margin-left:40rem;
                     margin-right: 10rem;
+                    @media (max-width: ${DEVICE_BREAKPOINTS.LG}){
+                        margin: 0;
+                        display:none;
+                    }
 
                 } 
                 p:nth-child(3){  
@@ -130,7 +177,12 @@ export const ModalContent = styled.div`
                 overflow: auto;                
                 display: flex;
                 flex-direction: column;
-                height: 45rem;                
+                height: 50vh;  
+                
+                @media (max-width: ${DEVICE_BREAKPOINTS.LG}){                    
+                    width:70vw;                        
+                    height: 30vh;
+                }
                 .offer{
                     padding: 2rem;
                     border-bottom: solid 2px ${({theme}) => theme.COLORS.LINE};
@@ -153,6 +205,12 @@ export const ModalContent = styled.div`
                             color: ${({theme}) => theme.COLORS.SECONDARY_BLUE};
                             font-weight: bold;
                         }
+                        @media (max-width: ${DEVICE_BREAKPOINTS.LG}){
+                            width: 100%;
+                            align-items: center;
+                            justify-content: center;
+                            gap:0.5rem;
+                        }
                     }
                     .price{
                         display: flex;
@@ -168,6 +226,17 @@ export const ModalContent = styled.div`
                             font-weight: bold;
                             color: ${({theme}) => theme.COLORS.GREEN};
                         }
+                        @media (max-width: ${DEVICE_BREAKPOINTS.LG}){
+                            width: 100%;
+                            align-items: center;
+                            justify-content: center;
+                            gap:0.5rem;
+                        }
+                    }
+
+                    @media (max-width: ${DEVICE_BREAKPOINTS.LG}){
+                        flex-direction: column;
+                        gap: 1rem;
                     }
                 }
             }
@@ -184,6 +253,11 @@ export const ModalContent = styled.div`
         button{
             font-size: ${({theme}) => theme.FONTS.SMALLEST};
             font-weight: bold;
+        }
+        @media (max-width: ${DEVICE_BREAKPOINTS.LG}){
+            gap: 2rem;
+            margin:0 1rem 1rem;
+            align-self: center;
         }
     }
    

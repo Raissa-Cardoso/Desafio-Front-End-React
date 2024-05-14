@@ -9,8 +9,7 @@ import { Modal } from '../../components/Modal';
 export function Home(){
     const [modalOpen, setModalOpen] = useState(false);
     const [offers, setOffers]=useState([])
-    const[offersFiltered, setOffersFiltered]=useState([])
-    const[offersWithSemester, setOffersWithSemester]=useState([])
+    const[offersFiltered, setOffersFiltered]=useState([])    
     const [selectedSemester, setSelectedSemester] = useState('');
     
     const clickModal=(open)=>{

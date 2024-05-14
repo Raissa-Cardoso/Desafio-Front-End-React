@@ -12,6 +12,7 @@ export function Header(){
                 <div className="info">
                     <IoInformationCircleOutline/>
                     <span>Como funciona</span>
+                    <span>Ajuda</span>
                 </div>
                 <div className="contact">
                     <FaWhatsapp/>
@@ -24,6 +25,7 @@ export function Header(){
                 <div className="profile">
                     <span>Nome Sobrenome</span>
                     <CgProfile/>
+                    <span>Conta</span>
                 </div>
             </main>
             <footer>

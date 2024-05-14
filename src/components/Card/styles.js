@@ -1,12 +1,18 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
+import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakpoints";
 
 export const Container = styled.div`
-    height: 40rem;
+    height:40rem;
     width:30rem;
     box-shadow: 0 3px 8px rgba(0, 0, 0, .24);;
     border-radius: 1rem;
     background-color: ${({theme}) => theme.COLORS.FONT_WHITE};
     color: ${({theme}) => theme.COLORS.FONT_BLACK};
+
+    @media (max-width: ${DEVICE_BREAKPOINTS.SMD}){
+        width:85vw;
+        border: solid 1px blue;
+    }
 
     .initial{
         display:flex;
