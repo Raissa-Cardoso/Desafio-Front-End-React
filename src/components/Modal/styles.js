@@ -34,7 +34,8 @@ export const ModalContent = styled.div`
         
         >svg{
             font-size: 3rem;
-            color:${({theme}) => theme.COLORS.FONT_WHITE};            
+            color:${({theme}) => theme.COLORS.FONT_WHITE};
+            cursor: pointer;             
         }
     }
     >form{
