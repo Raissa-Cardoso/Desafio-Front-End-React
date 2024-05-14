@@ -65,8 +65,7 @@ export const ModalContent = styled.div`
         }
         fieldset:nth-child(1){
             @media (max-width: ${DEVICE_BREAKPOINTS.LG}){
-                width: 65vw;
-                border: solid 1px red;
+                width: 65vw;                
             }
         }
 

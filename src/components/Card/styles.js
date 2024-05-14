@@ -10,8 +10,7 @@ export const Container = styled.div`
     color: ${({theme}) => theme.COLORS.FONT_BLACK};
 
     @media (max-width: ${DEVICE_BREAKPOINTS.SMD}){
-        width:85vw;
-        border: solid 1px blue;
+        width:85vw;       
     }
 
     .initial{
