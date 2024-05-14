@@ -1,6 +1,6 @@
 import {Container} from './styles';
 
-export function Button({type,title, onClick}){
+export function Button({type,title, onClick}){  
     return(
         <Container onClick={onClick}>
         {type === 'disabled' ? (
@@ -8,7 +8,7 @@ export function Button({type,title, onClick}){
             <p>{title}</p>            
           </div>
         ) : type === 'delete' ? (
-          <div className='delete'>
+          <div className='delete' >
             <p>{title}</p>            
           </div>
         ) : (
