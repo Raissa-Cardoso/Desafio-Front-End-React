@@ -27,11 +27,15 @@ export const ModalContent = styled.div`
     flex-direction: column; 
     position: relative;   
     
+    @media (max-width: ${DEVICE_BREAKPOINTS.MD}) and (max-width: ${DEVICE_BREAKPOINTS.LG}){        
+        height: 98vh;
+        margin-top: 3rem;
+    }
     @media (max-width: ${DEVICE_BREAKPOINTS.LG}){
         width:80vw;
         padding:1rem;
     }
-      
+
     >header{        
         position: absolute;
         top: -3rem;
