@@ -28,7 +28,7 @@ export const ModalContent = styled.div`
     position: relative;   
     
     @media (max-width: ${DEVICE_BREAKPOINTS.MD}) and (max-width: ${DEVICE_BREAKPOINTS.LG}){        
-        height: 95vh;
+        height: 100vh;
         margin-top: 3rem;
     }
     @media (max-width: ${DEVICE_BREAKPOINTS.LG}){
@@ -184,7 +184,7 @@ export const ModalContent = styled.div`
                 
                 @media (max-width: ${DEVICE_BREAKPOINTS.LG}){                    
                     width:70vw;                        
-                    height: 30vh;
+                    height: 25vh;
                 }
                 .offer{
                     padding: 2rem;
